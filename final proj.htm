@@ -16,12 +16,15 @@
         
     </svg>
     <br>
-    <button onclick="myFunction(1)">Page 1</button>
-    <button onclick="myFunction(2)">Page 2</button>
-    <button onclick="myFunction(3)">Page 3</button>
-    <button onclick="myFunction(4)">Page 4</button>
+    <button onclick="myFunction(1)">Gasoline</button>
+    <button onclick="myFunction(2)">Diesel</button>
+    <button onclick="myFunction(3)">Electricity</button>
+    <button onclick="myFunction(4)">All</button>
+	<a href="end.htm">
+		<button>Next</button>
+	</a>
     <script>
-
+	
 	async function myFunction(pagenum) {
 	d3.selectAll("svg > *").remove();
 	
@@ -38,7 +41,7 @@
         .append("circle")
         .attr("cx",function(d){return xScale(d.AverageCityMPG)})
         .attr("cy",function(d){return yScale(d.AverageHighwayMPG)})
-        .attr("r",5)
+        .attr("r",3)
         .style("fill",function(d){if (d.Fuel == "Gasoline") {return "red"}
         			  if (d.Fuel == "Diesel") {return "blue"}
         			  if (d.Fuel == "Electricity") {return "green"} })
@@ -89,13 +92,19 @@
         .attr("dy", ".75em")
         .attr("transform", "rotate(-90)")
         .text("Average Highway MPG");
-
+		
+		if (pagenum == 1 || pagenum == 4){
         d3.select("svg").append("circle").attr("cx",200).attr("cy",130).attr("r", 5).style("fill", "red")
+		d3.select("svg").append("text").attr("x", 220).attr("y", 130).text("Gasoline").style("font-size", "15px").attr("alignment-baseline","middle")
+		}
+		if (pagenum == 2 || pagenum == 4){
         d3.select("svg").append("circle").attr("cx",200).attr("cy",160).attr("r", 5).style("fill", "blue")
+		d3.select("svg").append("text").attr("x", 220).attr("y", 160).text("Diesel").style("font-size", "15px").attr("alignment-baseline","middle")
+		}
+		if (pagenum == 3 || pagenum == 4){
         d3.select("svg").append("circle").attr("cx",200).attr("cy",190).attr("r", 5).style("fill", "green")
-        d3.select("svg").append("text").attr("x", 220).attr("y", 130).text("Gasoline").style("font-size", "15px").attr("alignment-baseline","middle")
-        d3.select("svg").append("text").attr("x", 220).attr("y", 160).text("Diesel").style("font-size", "15px").attr("alignment-baseline","middle")
         d3.select("svg").append("text").attr("x", 220).attr("y", 190).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle")
+		}
 	
 	if (pagenum == 1){
 	d3.select("svg").append("text").attr("x", 300).attr("y", 50).text("The range for gasoline MPG on the highway ").style("font-size", "15px").attr("alignment-baseline","middle")
