@@ -20,11 +20,17 @@
     <button onclick="myFunction(2)">Diesel</button>
     <button onclick="myFunction(3)">Electricity</button>
     <button onclick="myFunction(4)">All</button>
+	<br>
+	<br>
+	<a href="start.htm">
+		<button>Back</button>
+	</a>
 	<a href="end.htm">
 		<button>Next</button>
 	</a>
     <script>
-	
+	d3.select("svg").append("text").attr("x", 5).attr("y", 50).text("Select fuel type to see more info.").style("font-size", "15px").attr("alignment-baseline","middle")
+	d3.select("svg").append("text").attr("x", 5).attr("y", 65).text("Mouseover datapoints on chart to see make of car and specific make info.").style("font-size", "15px").attr("alignment-baseline","middle")
 	async function myFunction(pagenum) {
 	d3.selectAll("svg > *").remove();
 	
@@ -77,7 +83,7 @@
         .text("City vs Highway MPG");
 
         d3.select("svg").append("text")
-        .attr("transform", "translate("+margin+"," + 50 + ")")
+        .attr("transform", "translate("+10+"," + 90 + ")")
         .attr("class", "x label")
         .attr("text-anchor", "end")
         .attr("x", width)
@@ -85,10 +91,11 @@
         .text("Average City MPG");
 
         d3.select("svg").append("text")
-        .attr("transform", "translate("+margin+"," + (250) + ")")
+        .attr("transform", "translate("+50+"," + (50) + ")")
         .attr("class", "y label")
         .attr("text-anchor", "end")
-        .attr("y", 6)
+        .attr("y", 5)
+		.attr("x", -75)
         .attr("dy", ".75em")
         .attr("transform", "rotate(-90)")
         .text("Average Highway MPG");
